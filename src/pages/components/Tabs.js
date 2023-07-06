@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-function Tabs({ tabs, tabInputs }) {
+function Tabs({ tabs = [], tabInputs = [] }) {
   const [activeTab, setActiveTab] = useState(0);
 
   const handleTabClick = (index) => {
@@ -12,7 +12,7 @@ function Tabs({ tabs, tabInputs }) {
     <>
 
     <div className="tabs justify-center">
-      {tabs.map((tab, index) => (
+      {tabs?.map((tab, index) => (
         <a
           key={index}
           className={`tab ${activeTab === index ? "tab-active" : ""}`}
