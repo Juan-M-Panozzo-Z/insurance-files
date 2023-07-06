@@ -5,8 +5,8 @@ export default function Home() {
     dbConnect();
     return (
         <IndexLayout title="Home">
-            <div className="hero min-h-screen md:w-1/2 mx-auto">
-                <div className="text-center flex flex-col gap-8 w-full p-4">
+            <div className="hero md:h-screen md:w-1/2 mx-auto">
+                <div className="text-center flex flex-col space-y-8 w-full p-4">
                     <input
                         type="text"
                         placeholder="Ingrese para buscar..."

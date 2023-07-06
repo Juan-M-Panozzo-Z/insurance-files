@@ -27,7 +27,7 @@ function FileForm() {
     };
 
     return (
-        <form className="mx-auto p-8 rounded-box shadow-xl shadow-gray-200">
+        <form className="mx-auto p-8 rounded-box ">
             <div className="form-group grid gap-8">
                 <div className="form-control">
                     <label className="label">
@@ -93,7 +93,7 @@ function FileForm() {
                 </div>
 
                 <div className="form-control">
-                    <button onClick={handleSubmit} className="btn btn-primary">
+                    <button onClick={handleSubmit} className="btn btn-lg btn-primary">
                         Guardar
                     </button>
                 </div>
