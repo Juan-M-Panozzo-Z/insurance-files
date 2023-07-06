@@ -1,4 +1,4 @@
-import FileForm from "./components/Form";
+import FileForm from "./components/FileForm";
 import Section from "./components/Section";
 import IndexLayout from "./layouts/indexLayout";
 
