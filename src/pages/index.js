@@ -1,8 +1,14 @@
+import { useState } from "react";
 import IndexLayout from "./layouts/indexLayout";
-import dbConnect from "../lib/dbConnect";
 
 export default function Home() {
-    dbConnect();
+    const [search, setSearch] = useState("");
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        search && window.location.replace(`/search/${search}`);
+    };
+
     return (
         <IndexLayout title="Home">
             <div className="hero md:h-screen md:w-1/2 mx-auto">
@@ -11,9 +17,15 @@ export default function Home() {
                         type="text"
                         placeholder="Ingrese para buscar..."
                         className="input input-lg input-bordered"
+                        onChange={(e) => setSearch(e.target.value)}
                         autoFocus
                     />
-                    <button className="btn btn-lg btn-primary">Buscar</button>
+                    <button
+                        onClick={(e) => handleSearch(e)}
+                        className="btn btn-lg btn-primary"
+                    >
+                        Buscar
+                    </button>
                 </div>
             </div>
         </IndexLayout>
