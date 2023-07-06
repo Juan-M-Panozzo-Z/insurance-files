@@ -1,38 +1,30 @@
-import React from "react";
-import Tabs from "./Tabs";
-import TabInput from "./TabInput";
+import React, { useState } from "react";
+import FilesInput from "./FilesInput";
+import { set } from "mongoose";
 
 function FileForm() {
-    const inputProps = {
-        historiaClinica: {
-            title: "Historia Clínica",
-            color: "border-red-200",
-        },
-        facturas: {
-            title: "Facturas",
-            color: "border-green-200",
-        },
-        remuneracion: {
-            title: "Remuneración",
-            color: "border-blue-200",
-        },
-        diagnostico: {
-            title: "Diagnóstico por imagen",
-            color: "border-yellow-200",
-        },
-        otros: {
-            title: "Otros",
-            color: "border-purple-200",
-        },
-    };
+    const [name, setName] = useState("name");
+    const [lastName, setLastName] = useState("lastName");
+    const [dni, setDni] = useState("dni");
+    const [codFactura, setCodFactura] = useState("codFactura");
+    const [historiaClinica, setHistoriaClinica] = useState([]);
+    const [facturas, setFacturas] = useState([]);
+    const [remuneracion, setRemuneracion] = useState([]);
+    const [diagnosticoImagen, setDiagnosticoImagen] = useState([]);
 
-    const tabInputs = Object.keys(inputProps).map((key) => (
-        <TabInput
-            key={key}
-            title={inputProps[key].title}
-            color={inputProps[key].color}
-        />
-    ));
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log({
+            name,
+            lastName,
+            dni,
+            codFactura,
+            historiaClinica,
+            facturas,
+            remuneracion,
+            diagnosticoImagen,
+        });
+    };
 
     return (
         <form className="mx-auto p-8 rounded-box shadow-xl shadow-gray-200">
@@ -45,6 +37,7 @@ function FileForm() {
                         type="text"
                         placeholder="Nombre"
                         className="input input-bordered"
+                        onChange={(e) => setName(e.target.value)}
                     />
                 </div>
                 <div className="form-control">
@@ -55,6 +48,7 @@ function FileForm() {
                         type="text"
                         placeholder="Apellido(s)"
                         className="input input-bordered"
+                        onChange={(e) => setLastName(e.target.value)}
                     />
                 </div>
                 <div className="form-control">
@@ -65,6 +59,7 @@ function FileForm() {
                         type="number"
                         placeholder="DNI"
                         className="input input-bordered"
+                        onChange={(e) => setDni(e.target.value)}
                     />
                 </div>
                 <div className="form-control">
@@ -75,15 +70,33 @@ function FileForm() {
                         type="text"
                         placeholder="Cod. de factura"
                         className="input input-bordered"
+                        onChange={(e) => setCodFactura(e.target.value)}
                     />
                 </div>
-                <Tabs
-                    tabs={Object.keys(inputProps).map((key) => ({
-                        title: inputProps[key].title,
-                        color: inputProps[key].color,
-                    }))}
-                    tabInputs={tabInputs}
-                />
+                <div className=" grid md:grid-cols-2 gap-4 border border-gray-200 rounded-box p-4">
+                    <FilesInput
+                        title="Historia clínica"
+                        onStateChange={setHistoriaClinica}
+                    />
+                    <FilesInput
+                        title="Factura(s)"
+                        onStateChange={setFacturas}
+                    />
+                    <FilesInput
+                        title="Remuneración"
+                        onStateChange={setRemuneracion}
+                    />
+                    <FilesInput
+                        title="Diagnóstico por imagen"
+                        onStateChange={setDiagnosticoImagen}
+                    />
+                </div>
+
+                <div className="form-control">
+                    <button onClick={handleSubmit} className="btn btn-primary">
+                        Guardar
+                    </button>
+                </div>
             </div>
         </form>
     );

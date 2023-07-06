@@ -8,11 +8,7 @@ const links = [
     {
         href: "new",
         label: "Nuevo fichero",
-    },
-    {
-        href: "search",
-        label: "Consultar ficheros",
-    },
+    }
 ];
 function Drawer({ children }) {
     return (
