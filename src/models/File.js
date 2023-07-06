@@ -17,9 +17,17 @@ const FileSchema = new Schema(
         invoice: {
             type: String,
         },
-        files: {
+        historiaClinica: {
             type: Array,
-            // required: [true, "Please provide a file"],
+        },
+        facturas: {
+            type: Array,
+        },
+        remuneracion: {
+            type: Array,
+        },
+        diagnosticoImagen: {
+            type: Array,
         },
     },
     {

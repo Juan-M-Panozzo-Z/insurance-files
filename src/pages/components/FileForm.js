@@ -1,30 +1,28 @@
 import React, { useState } from "react";
 import FilesInput from "./FilesInput";
-import { set } from "mongoose";
+import axios from "axios";
 
 function FileForm() {
-    const [name, setName] = useState("name");
-    const [lastName, setLastName] = useState("lastName");
-    const [dni, setDni] = useState("dni");
-    const [codFactura, setCodFactura] = useState("codFactura");
+    const [name, setName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [dni, setDni] = useState("");
+    const [factura, setFactura] = useState("");
     const [historiaClinica, setHistoriaClinica] = useState([]);
     const [facturas, setFacturas] = useState([]);
     const [remuneracion, setRemuneracion] = useState([]);
     const [diagnosticoImagen, setDiagnosticoImagen] = useState([]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log({
-            name,
-            lastName,
-            dni,
-            codFactura,
-            historiaClinica,
-            facturas,
-            remuneracion,
-            diagnosticoImagen,
-        });
-    };
+        const formData = new FormData();
+        console.log(historiaClinica)
+        historiaClinica.map(hc => {
+            formData.append("hc-",hc);
+            return null
+        })
+      
+        console.log(formData);
+      };
 
     return (
         <form className="mx-auto p-8 rounded-box ">
@@ -64,13 +62,13 @@ function FileForm() {
                 </div>
                 <div className="form-control">
                     <label className="label">
-                        <span className="label-text">Cod. de factura</span>
+                        <span className="label-text">Factura</span>
                     </label>
                     <input
                         type="text"
-                        placeholder="Cod. de factura"
+                        placeholder="Factura"
                         className="input input-bordered"
-                        onChange={(e) => setCodFactura(e.target.value)}
+                        onChange={(e) => setFactura(e.target.value)}
                     />
                 </div>
                 <div className=" grid md:grid-cols-2 gap-4 border border-gray-200 rounded-box p-4">
@@ -93,7 +91,10 @@ function FileForm() {
                 </div>
 
                 <div className="form-control">
-                    <button onClick={handleSubmit} className="btn btn-lg btn-primary">
+                    <button
+                        onClick={handleSubmit}
+                        className="btn btn-lg btn-primary"
+                    >
                         Guardar
                     </button>
                 </div>
