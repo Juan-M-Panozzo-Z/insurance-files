@@ -14,7 +14,6 @@ function FileForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const formData = new FormData();
 
         await axios
             .post("/api/file", {
