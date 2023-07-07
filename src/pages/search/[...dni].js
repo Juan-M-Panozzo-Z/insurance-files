@@ -37,7 +37,7 @@ export default function SearchFile() {
                             </Link>
                         ))
                     ) : (
-                        <div className="flex flex-col space-y-4">
+                        <div className="col-span-2 flex flex-col space-y-4">
                             <h1 className="text-center">
                                 No se encontraron resultados
                             </h1>

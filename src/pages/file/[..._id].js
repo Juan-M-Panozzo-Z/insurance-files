@@ -54,6 +54,10 @@ export default function SearchFile() {
                         <h2 className="text-center text-3xl">
                             DNI: {file.dni}
                         </h2>
+                        <h2 className="text-center text-primary-focus font-semibold text-xl">
+                            Fecha:{" "}
+                            {file.createdAt && file.createdAt.split("T")[0]}
+                        </h2>
                     </div>
                     <div className="divider w-1/2 mx-auto"></div>
                     <CardFiles files={files} />
