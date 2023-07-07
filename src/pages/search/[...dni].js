@@ -25,12 +25,14 @@ export default function SearchFile() {
                 <h1 className="text-center text-2xl md:text-4xl font-bold">
                     Resultados de la busqueda
                 </h1>
+                <div className="divider w-1/2 mx-auto"></div>
                 <div className="grid md:grid-cols-2 place-items-center gap-4">
                     {files?.length > 0 ? (
                         files.map((file) => (
                             <Link key={file._id} href={`/file/${file._id}`}>
                                 <span className="btn btn-primary btn-lg">
-                                    {file._id}
+                                    {file.createdAt && file.createdAt.split("T")[0]}
+
                                 </span>
                             </Link>
                         ))

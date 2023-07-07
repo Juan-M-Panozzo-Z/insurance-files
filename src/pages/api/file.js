@@ -10,7 +10,9 @@ export default async function handler(req, res) {
         case "GET":
             if (dni) {
                 try {
-                    const file = await File.find({ dni });
+                    const file = await File.find({ dni }).sort({
+                        createdAt: -1,
+                    });
                     if (!file) {
                         return res.status(400).json({ success: false });
                     }
@@ -18,8 +20,7 @@ export default async function handler(req, res) {
                 } catch (error) {
                     res.status(400).json({ success: false });
                 }
-            }
-            else if (_id) {
+            } else if (_id) {
                 try {
                     const file = await File.findById({ _id });
                     if (!file) {
