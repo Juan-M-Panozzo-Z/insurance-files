@@ -6,7 +6,7 @@ const links = [
         label: "Home",
     },
     {
-        href: "new",
+        href: "/new",
         label: "Nuevo fichero",
     }
 ];

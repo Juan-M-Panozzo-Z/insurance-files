@@ -4,14 +4,38 @@ import dbConnect from "../../lib/dbConnect";
 export default async function handler(req, res) {
     await dbConnect();
     const { method } = req;
+    const { dni, _id } = req.query;
 
     switch (method) {
         case "GET":
-            try {
-                const files = await File.find({});
-                res.status(200).json({ success: true, data: files });
-            } catch (error) {
-                res.status(400).json({ success: false });
+            if (dni) {
+                try {
+                    const file = await File.find({ dni });
+                    if (!file) {
+                        return res.status(400).json({ success: false });
+                    }
+                    res.status(200).json(file);
+                } catch (error) {
+                    res.status(400).json({ success: false });
+                }
+            }
+            else if (_id) {
+                try {
+                    const file = await File.findById({ _id });
+                    if (!file) {
+                        return res.status(400).json({ success: false });
+                    }
+                    res.status(200).json(file);
+                } catch (error) {
+                    res.status(400).json({ success: false });
+                }
+            } else {
+                try {
+                    const files = await File.find({});
+                    res.status(200).json(files);
+                } catch (error) {
+                    res.status(400).json({ success: false });
+                }
             }
             break;
         case "POST":

@@ -15,17 +15,38 @@ function FileForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData();
-        console.log(historiaClinica)
-        historiaClinica.map(hc => {
-            formData.append("hc-",hc);
-            return null
-        })
-      
-        console.log(formData);
-      };
+
+        await axios
+            .post("/api/file", {
+                name,
+                lastName,
+                dni,
+                factura,
+                historiaClinica,
+                facturas,
+                remuneracion,
+                diagnosticoImagen,
+            })
+            .then(() => {
+                setName("");
+                setLastName("");
+                setDni("");
+                setFactura("");
+                setHistoriaClinica([]);
+                setFacturas([]);
+                setRemuneracion([]);
+                setDiagnosticoImagen([]);
+
+                alert("Archivo creado correctamente");
+                window.location.replace("/");
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
     return (
-        <form className="mx-auto p-8 rounded-box ">
+        <form className="mx-auto p-8 rounded-box">
             <div className="form-group grid gap-8">
                 <div className="form-control">
                     <label className="label">
@@ -71,22 +92,22 @@ function FileForm() {
                         onChange={(e) => setFactura(e.target.value)}
                     />
                 </div>
-                <div className=" grid md:grid-cols-2 gap-4 border border-gray-200 rounded-box p-4">
+                <div className=" grid md:grid-cols-4 gap-4 border border-gray-200 rounded-box p-4">
                     <FilesInput
                         title="Historia clínica"
-                        onStateChange={setHistoriaClinica}
+                        onLinksChange={setHistoriaClinica}
                     />
                     <FilesInput
                         title="Factura(s)"
-                        onStateChange={setFacturas}
+                        onLinksChange={setFacturas}
                     />
                     <FilesInput
                         title="Remuneración"
-                        onStateChange={setRemuneracion}
+                        onLinksChange={setRemuneracion}
                     />
                     <FilesInput
                         title="Diagnóstico por imagen"
-                        onStateChange={setDiagnosticoImagen}
+                        onLinksChange={setDiagnosticoImagen}
                     />
                 </div>
 
