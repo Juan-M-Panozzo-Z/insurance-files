@@ -22,7 +22,7 @@ export default async function handle(req, res) {
             });
             const client = new S3Client({
                 region: process.env.AWS_REGION,
-                endpoint: process.env.AWS_ENDPOINT,
+                // endpoint: `s3.${process.env.AWS_REGION}.amazonaws.com`,
                 credentials: {
                     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
                     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
@@ -37,7 +37,7 @@ export default async function handle(req, res) {
                         Bucket: process.env.AWS_BUCKET_NAME,
                         Key: newFileName,
                         Body: fs.readFileSync(file.path),
-                        ContentType: mime.lookup(file.path),
+                        ContentType: mime.lookup(file.path) || "application/octet-stream",
                     })
                 );
                 const link = `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${newFileName}`;
