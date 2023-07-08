@@ -5,6 +5,7 @@ import axios from "axios";
 import IndexLayout from "../layouts/indexLayout";
 export default function SearchFile() {
     const [files, setFiles] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const { dni } = useRouter().query;
 
     useEffect(() => {
@@ -12,10 +13,11 @@ export default function SearchFile() {
             .get(`/api/file?dni=${dni}`)
             .then(({ data }) => {
                 setFiles(data);
-                console.log(data);
+                setIsLoading(false);
             })
             .catch((err) => {
                 console.log(err);
+                setIsLoading(false);
             });
     }, [dni]);
 
@@ -27,12 +29,14 @@ export default function SearchFile() {
                 </h1>
                 <div className="divider w-1/2 mx-auto"></div>
                 <div className="grid md:grid-cols-2 place-items-center gap-4">
-                    {files?.length > 0 ? (
+                    {isLoading ? (
+                        <div className="text-center">Cargando archivos...</div>
+                    ) : files?.length > 0 ? (
                         files.map((file) => (
                             <Link key={file._id} href={`/file/${file._id}`}>
                                 <span className="btn btn-primary btn-lg">
-                                    {file.createdAt && file.createdAt.split("T")[0]}
-
+                                    {file.createdAt &&
+                                        file.createdAt.split("T")[0]}
                                 </span>
                             </Link>
                         ))
