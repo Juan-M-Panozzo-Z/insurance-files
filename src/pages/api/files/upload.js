@@ -9,36 +9,47 @@ const generateRandomString = (length) => {
 };
 
 export default async function handle(req, res) {
-    const form = new multiparty.Form();
-    const { fields, files } = await new Promise((resolve, reject) => {
-        form.parse(req, (err, fields, files) => {
-            if (err) return reject(err);
-            resolve({ fields, files });
-        });
-    });
-    const client = new S3Client({
-        region: process.env.AWS_REGION,
-        credentials: {
-            accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-        },
-    });
-    const links = [];
-    for (const file of files.file) {
-        const ext = file.originalFilename.split(".").pop();
-        const newFileName = `${generateRandomString(24)}.${ext}`;
-        await client.send(
-            new PutObjectCommand({
-                Bucket: process.env.AWS_BUCKET_NAME,
-                Key: newFileName,
-                Body: fs.readFileSync(file.path),
-                ContentType: mime.lookup(file.path),
-            })
-        );
-        const link = `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${newFileName}`;
-        links.push(link);
+    const { method } = req;
+
+    switch (method) {
+        case "POST":
+            const form = new multiparty.Form();
+            const { fields, files } = await new Promise((resolve, reject) => {
+                form.parse(req, (err, fields, files) => {
+                    if (err) return reject(err);
+                    resolve({ fields, files });
+                });
+            });
+            const client = new S3Client({
+                region: process.env.AWS_REGION,
+                credentials: {
+                    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+                    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+                },
+            });
+            const links = [];
+            for (const file of files.file) {
+                const ext = file.originalFilename.split(".").pop();
+                const newFileName = `${generateRandomString(24)}.${ext}`;
+                await client.send(
+                    new PutObjectCommand({
+                        Bucket: process.env.AWS_BUCKET_NAME,
+                        Key: newFileName,
+                        Body: fs.readFileSync(file.path),
+                        ContentType: mime.lookup(file.path),
+                    })
+                );
+                const link = `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${newFileName}`;
+                links.push(link);
+            }
+            res.status(200).json({ links });
+            break;
+
+        default:
+            res.setHeader("Allow", ["POST"]);
+            res.status(405).end(`Method ${method} Not Allowed`);
+            break;
     }
-    res.status(200).json({ links });
 }
 
 export const config = {
