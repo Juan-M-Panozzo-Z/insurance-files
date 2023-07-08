@@ -22,7 +22,6 @@ export default async function handle(req, res) {
             });
             const client = new S3Client({
                 region: process.env.AWS_REGION,
-                endpoint: `s3.${process.env.AWS_REGION}.amazonaws.com`,
                 credentials: {
                     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
                     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
