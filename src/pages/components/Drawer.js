@@ -37,7 +37,7 @@ function Drawer({ children }) {
                         </label>
                     </div>
                     <div className="flex-1 px-2 mx-2">
-                        <span className="font-bold bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+                        <span className="font-bold text-primary">
                             SC&nbsp;
                         </span>
                         | Fichero virtual

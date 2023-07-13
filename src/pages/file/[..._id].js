@@ -74,6 +74,14 @@ export default function SearchFile() {
                     </button>
                 </div>
             )}
+            <div className="mx-auto p-4 space-x-4">
+                <Link href={`/search/${file.dni}`} className="btn btn-primary">
+                    Volver
+                </Link>
+                {/* <Link href={`/put/${file._id}`} className="btn btn-accent">
+                    Modificar
+                </Link> */}
+            </div>
         </IndexLayout>
     );
 }

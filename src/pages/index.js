@@ -1,7 +1,6 @@
 import { useState } from "react";
 import IndexLayout from "./layouts/indexLayout";
 
-
 export default function Home() {
     const [search, setSearch] = useState("");
 
@@ -20,7 +19,9 @@ export default function Home() {
                         className="input input-lg input-bordered"
                         onChange={(e) => setSearch(e.target.value)}
                         autoFocus
-
+                        onKeyPress={(e) => {
+                            e.key === "Enter" && handleSearch(e);
+                        }}
                     />
                     <button
                         onClick={(e) => handleSearch(e)}
