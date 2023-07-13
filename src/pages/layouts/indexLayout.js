@@ -4,7 +4,7 @@ export default function IndexLayout({ children, ...props }) {
     return (
         <main>
             <Head>
-                <title>{`${props.title} | Sanatorio Concordia`}</title>
+                <title>{`${props.title} | ART & Seguros Sanatorio Concordia`}</title>
             </Head>
             <Drawer>{children}</Drawer>
         </main>
