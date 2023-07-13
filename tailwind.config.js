@@ -6,7 +6,21 @@ module.exports = {
         "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     ],
     daisyui: {
-        themes: ["emerald"],
+        themes: [
+            {
+                sc: {
+                    primary: "#4ade80",
+                    secondary: "#22d3ee",
+                    accent: "#eeaf3a",
+                    neutral: "#57534e",
+                    "base-100": "#f3f4f6",
+                    "info": "#3abff8",
+                    "success": "#36d399",
+                    "warning": "#fbbd23",
+                    "error": "#f87272",
+                }
+            },
+        ],
     },
     plugins: [require("daisyui")],
 };

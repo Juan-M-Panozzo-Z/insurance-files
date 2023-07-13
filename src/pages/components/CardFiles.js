@@ -5,8 +5,10 @@ export default function CardFiles({ files }) {
         <div className="grid md:grid-cols-4 gap-4 p-4 items-start">
             {files?.map((file) => (
                 <div className="p-4" key={file.id}>
-                    <div className="flex flex-col gap-2 p-4 text-left rounded-box border-4 border-gray-300">
-                        <h3 className="text-xl">{file.type}</h3>
+                    <div className="card md:w-96 bg-neutral-600 text-neutral-content ">
+                        <div className="card-body  text-center">
+                        <h3 className="card-title pb-1 mb-1 border-b-2">{file.type}</h3>
+                        
                         {file?.files.map((f) => (
                             <Link
                                 key={f}
@@ -17,6 +19,7 @@ export default function CardFiles({ files }) {
                                 {f.substring(f.length - 20)}
                             </Link>
                         ))}
+                        </div>
                     </div>
                 </div>
             ))}

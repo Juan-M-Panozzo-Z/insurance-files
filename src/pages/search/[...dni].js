@@ -33,12 +33,34 @@ export default function SearchFile() {
                         <div className="text-center">Cargando archivos...</div>
                     ) : files?.length > 0 ? (
                         files.map((file) => (
-                            <Link key={file._id} href={`/file/${file._id}`}>
-                                <span className="btn btn-primary btn-lg">
-                                    {file.createdAt &&
-                                        file.createdAt.split("T")[0]}
-                                </span>
-                            </Link>
+                            <div
+                                key={file}
+                                className="card md:w-96 bg-neutral-600 text-neutral-content"
+                            >
+                                <div className="card-body items-center text-center">
+                                    <h2 className="card-title text-2xl capitalize">{`${file.name} ${file.lastName}`}</h2>
+                                    <p>
+                                        {file.createdAt &&
+                                            file.createdAt.split("T")[0]}
+                                    </p>
+                                    <div className="card-actions justify-end">
+                                        <Link href={`/file/${file._id}`}>
+                                            <span className="btn btn-primary">
+                                                Ver
+                                            </span>
+                                        </Link>
+                                        <Link
+                                            key={file._id}
+                                            // href={`/put/${file._id}`}
+                                            href={'#'}
+                                        >
+                                            <span className="btn btn-accent">
+                                                Modificar
+                                            </span>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
                         ))
                     ) : (
                         <div className="col-span-2 flex flex-col space-y-4">
@@ -56,4 +78,8 @@ export default function SearchFile() {
             </div>
         </IndexLayout>
     );
+}
+
+{
+    /*  */
 }

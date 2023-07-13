@@ -44,7 +44,7 @@ export default function FilesInput({ title, onLinksChange }) {
                                     </span>
                                 </td>
                                 <td>
-                                    <button className="btn text-[10px] btn-xs md:btn-sm btn-primary rounded-full">
+                                    <button className="btn text-[10px] btn-xs md:btn-sm btn-primary">
                                         <a href={link} target="_blank">
                                             Ver
                                         </a>

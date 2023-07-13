@@ -1,6 +1,7 @@
 import { useState } from "react";
 import IndexLayout from "./layouts/indexLayout";
 
+
 export default function Home() {
     const [search, setSearch] = useState("");
 
