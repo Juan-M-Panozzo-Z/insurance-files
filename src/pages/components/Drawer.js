@@ -12,7 +12,7 @@ const links = [
 ];
 function Drawer({ children }) {
     return (
-        <div className="drawer">
+        <div className="drawer h-screen">
             <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col">
                 <div className="w-full navbar bg-base-200">
