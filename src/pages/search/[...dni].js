@@ -13,11 +13,11 @@ export default function SearchFile() {
             .get(`/api/file?dni=${dni}`)
             .then(({ data }) => {
                 setFiles(data);
-                // setIsLoading(false);
+                setIsLoading(false);
             })
             .catch((err) => {
                 console.log(err);
-                // setIsLoading(false);
+                setIsLoading(false);
             });
     }, [dni]);
 
