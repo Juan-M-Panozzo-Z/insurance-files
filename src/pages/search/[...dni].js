@@ -13,11 +13,11 @@ export default function SearchFile() {
             .get(`/api/file?dni=${dni}`)
             .then(({ data }) => {
                 setFiles(data);
-                setIsLoading(false);
+                // setIsLoading(false);
             })
             .catch((err) => {
                 console.log(err);
-                setIsLoading(false);
+                // setIsLoading(false);
             });
     }, [dni]);
 
@@ -30,8 +30,8 @@ export default function SearchFile() {
                 <div className="divider w-1/2 mx-auto"></div>
                 <div className="grid md:grid-cols-3 place-items-center px-4 gap-4">
                     {isLoading ? (
-                        <div className="col-span-3 flex flex-col gap-2 justify-around items-center bg-primary absolute inset-1/3 rounded-box shadow-xl"> 
-                            <h3 className=" text-2xl">Buscando ficheros...</h3>
+                        <div className="col-span-3 flex flex-col gap-2 justify-around items-center bg-primary absolute inset-1/4 md:inset-1/3 rounded-box shadow-xl"> 
+                            <h3 className=" text-2xl text-center">Buscando ficheros...</h3>
                             <span className="loading loading-spinner w-20"></span>
                         </div>
                     ) : files?.length > 0 ? (
