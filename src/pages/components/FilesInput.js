@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+
 export default function FilesInput({ title, onLinksChange }) {
     const [links, setLinks] = useState([]);
+
     const uploadFiles = async (e) => {
         const files = e.target.files;
 
@@ -20,6 +22,13 @@ export default function FilesInput({ title, onLinksChange }) {
                     console.log(err);
                 });
         }
+    };
+
+    const handleDelete = async (link) => {
+        console.log(link)
+        const newLinks = links.filter((l) => l !== link);
+        setLinks(newLinks);
+        onLinksChange(newLinks);
     };
 
     return (
@@ -44,11 +53,20 @@ export default function FilesInput({ title, onLinksChange }) {
                                     </span>
                                 </td>
                                 <td>
-                                    <button className="btn text-[10px] btn-xs md:btn-sm btn-primary">
-                                        <a href={link} target="_blank">
-                                            Ver
-                                        </a>
-                                    </button>
+                                    <div className="flex items-center gap-2">
+                                        <button className="btn text-[10px] btn-xs md:btn-sm btn-primary">
+                                            <a href={link} target="_blank">
+                                                Ver
+                                            </a>
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => handleDelete(link)}
+                                            className="btn text-[10px] btn-xs md:btn-sm btn-error"
+                                        >
+                                            X
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>

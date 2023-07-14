@@ -45,6 +45,7 @@ export default async function handle(req, res) {
             res.status(200).json({ links });
             break;
 
+
         default:
             res.setHeader("Allow", ["POST"]);
             res.status(405).end(`Method ${method} Not Allowed`);
