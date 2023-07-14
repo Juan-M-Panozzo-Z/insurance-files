@@ -28,16 +28,17 @@ export default function SearchFile() {
                     Resultados de la busqueda
                 </h1>
                 <div className="divider w-1/2 mx-auto"></div>
-                <div className="grid md:grid-cols-2 place-items-center px-4 gap-4">
+                <div className="grid md:grid-cols-3 place-items-center px-4 gap-4">
                     {isLoading ? (
                         <div className="text-center">Cargando archivos...</div>
                     ) : files?.length > 0 ? (
                         files.map((file) => (
                             <div
                                 key={file}
-                                className="card w-full bg-neutral-600 text-neutral-content"
+                                className="card shadow-xl w-full bg-neutral-600 text-neutral-content"
                             >
                                 <div className="card-body items-center text-center">
+                                    <div className="italic text-xs absolute bottom-2 right-2 badge opacity-50">{file._id}</div>
                                     <h2 className="card-title text-2xl capitalize">{`${file.name} ${file.lastName}`}</h2>
                                     <p>
                                         {file.createdAt &&

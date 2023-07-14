@@ -8,7 +8,7 @@ const links = [
     {
         href: "/new",
         label: "Nuevo fichero",
-    }
+    },
 ];
 function Drawer({ children }) {
     return (
@@ -37,10 +37,10 @@ function Drawer({ children }) {
                         </label>
                     </div>
                     <div className="flex-1 px-2 mx-2">
-                        <span className="font-bold text-primary">
-                            SC&nbsp;
-                        </span>
-                        | Fichero virtual
+                        <Link href={'/'} className="btn btn-ghost font-normal">
+                            <img src="/logo-original.png" alt="logo" className="w-10 h-10" />
+                            | Fichero Digital
+                        </Link>
                     </div>
                     <div className="flex-none hidden lg:block">
                         <ul className="menu menu-horizontal">
