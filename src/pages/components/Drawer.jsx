@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const links = [
     {
@@ -38,7 +39,10 @@ function Drawer({ children }) {
                     </div>
                     <div className="flex-1 px-2 mx-2">
                         <Link href={'/'} className="btn btn-ghost font-normal">
-                            <img src="/logo-original.png" alt="logo" className="w-10 h-10" />
+                            <Image 
+                            width={40}
+                            height={40}
+                            src="/logo-original.png" alt="logo" />
                             | Fichero Digital
                         </Link>
                     </div>
