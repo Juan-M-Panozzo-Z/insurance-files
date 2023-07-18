@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -12,6 +13,10 @@ const links = [
     },
 ];
 function Drawer({ children }) {
+    const router = useRouter();
+
+    const isLoginPage = router.pathname === "/login";
+
     return (
         <div className="drawer h-screen">
             <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -38,23 +43,26 @@ function Drawer({ children }) {
                         </label>
                     </div>
                     <div className="flex-1 px-2 mx-2">
-                        <Link href={'/'} className="btn btn-ghost font-normal">
-                            <Image 
-                            width={40}
-                            height={40}
-                            src="/logo-original.png" alt="logo" />
+                        <Link href={"/"} className="btn btn-ghost font-normal">
+                            <Image
+                                width={40}
+                                height={40}
+                                src="/logo-original.png"
+                                alt="logo"
+                            />
                             | Fichero Digital
                         </Link>
                     </div>
                     <div className="flex-none hidden lg:block">
                         <ul className="menu menu-horizontal">
-                            {links.map((link) => (
-                                <li key={link.href}>
-                                    <Link href={link.href}>
-                                        <span>{link.label}</span>
-                                    </Link>
-                                </li>
-                            ))}
+                            {!isLoginPage &&
+                                links.map((link) => (
+                                    <li key={link.href}>
+                                        <Link href={link.href}>
+                                            <span>{link.label}</span>
+                                        </Link>
+                                    </li>
+                                ))}
                         </ul>
                     </div>
                 </div>
@@ -63,13 +71,14 @@ function Drawer({ children }) {
             <div className="drawer-side">
                 <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-56 h-full bg-base-200 rounded-r-box">
-                    {links.map((link) => (
-                        <li key={link.href}>
-                            <Link href={link.href}>
-                                <span>{link.label}</span>
-                            </Link>
-                        </li>
-                    ))}
+                    {!isLoginPage &&
+                        links.map((link) => (
+                            <li key={link.href}>
+                                <Link href={link.href}>
+                                    <span>{link.label}</span>
+                                </Link>
+                            </li>
+                        ))}
                 </ul>
             </div>
         </div>

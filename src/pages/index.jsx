@@ -1,7 +1,8 @@
-import { useState } from "react";
 import IndexLayout from "./layouts/indexLayout";
+import { useState } from "react";
 
-export default function Home() {
+
+export default function Home({ user }) {
     const [search, setSearch] = useState("");
 
     const handleSearch = (e) => {
