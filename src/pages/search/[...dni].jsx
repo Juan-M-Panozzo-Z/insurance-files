@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import axios from "axios";
 import IndexLayout from "../layouts/indexLayout";
+import CardLoading from "../components/CardLoading";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import axios from "axios";
 export default function SearchFile() {
     const [files, setFiles] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -29,12 +30,9 @@ export default function SearchFile() {
                 </h1>
                 <div className="divider w-1/2 mx-auto"></div>
                 <div className="grid md:grid-cols-3 place-items-center px-4 gap-4">
-                    {isLoading ? (
-                        <div className="col-span-3 flex flex-col gap-2 justify-around items-center bg-primary absolute inset-1/4 md:inset-1/3 rounded-box shadow-xl"> 
-                            <h3 className=" text-2xl text-center">Buscando ficheros...</h3>
-                            <span className="loading loading-spinner w-20"></span>
-                        </div>
-                    ) : files?.length > 0 ? (
+                    {isLoading
+                    ? <CardLoading title="Cargando resultados" />
+                     : files?.length > 0 ? (
                         files.map((file) => (
                             <div
                                 key={file}
