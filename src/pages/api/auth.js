@@ -1,17 +1,17 @@
 import dbConnect from "../../lib/dbConnect";
-import User from "../../models/User";
+import {User} from "../../models/User";
 import jwt from "jsonwebtoken";
 import cookie from "cookie";
 
 dbConnect();
 
 export default async function auth(req, res) {
-    const { method } = req;
+    const { method, body } = req;
 
     switch (method) {
         case "POST":
             try {
-                const { email, password } = req.body;
+                const { email, password } = body;
 
                 // Busca el usuario por email
                 const user = await User.findOne({ email });
