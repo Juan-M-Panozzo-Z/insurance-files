@@ -34,12 +34,14 @@ UserSchema.pre("save", function (next) {
 });
 
 // Método para comparar si la contraseña ingresada por el usuario es igual a la contraseña almacenada en la base de datos
-UserSchema.methods.comparePassword = function (candidatePassword, callback) {
-    bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
-        if (err) {
-            return callback(err);
-        }
-        callback(null, isMatch);
+UserSchema.methods.comparePassword = function (candidatePassword) {
+    return new Promise((resolve, reject) => {
+        bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(isMatch);
+        });
     });
 };
 

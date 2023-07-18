@@ -1,39 +1,26 @@
-import IndexLayout from "./layouts/indexLayout";
+import IndexLayoutNoAuth from "./layouts/indexLayoutNoAuth";
 import { useState } from "react";
-import { useRouter } from "next/router";
 import axios from "axios";
 
 export default function Login() {
-    const router = useRouter();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        try {
-            const res = await axios.post("/api/auth", { email, password });
-            if (res.status === 200) {
-                router.push("/");
-            }
-        } catch (err) {
-            console.error(err);
-            setError(err.response.data.message);
-        }
+        console.log(email, password)
     };
+      
 
     return (
-        <IndexLayout title="Login">
+        <IndexLayoutNoAuth title="Login">
             <main className="grid place-items-center h-full">
                 <div className="flex flex-col gap-4 border-base-200 border-2 shadow-md rounded-box md:w-1/2 h-auto p-8">
                     <h1 className="text-4xl font-bold text-center">
                         Iniciar sesión
                     </h1>
-                    <form
-                        className="flex flex-col gap-4"
-                        onSubmit={handleSubmit}
-                    >
+                    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                         <label className="flex flex-col gap-1">
                             <span className="text-lg font-semibold">Email</span>
                             <input
@@ -42,25 +29,18 @@ export default function Login() {
                                 className="input input-bordered rounded-full"
                                 placeholder="Email"
                                 value={email}
-                                onChange={(event) =>
-                                    setEmail(event.target.value)
-                                }
+                                onChange={(event) => setEmail(event.target.value)}
                             />
                         </label>
                         <label className="flex flex-col gap-1">
-                            <span className="text-lg font-semibold">
-                                Contraseña
-                            </span>
-
+                            <span className="text-lg font-semibold">Contraseña</span>
                             <input
                                 type="password"
                                 name="password"
                                 className="input input-bordered rounded-full"
                                 placeholder="Contraseña"
                                 value={password}
-                                onChange={(event) =>
-                                    setPassword(event.target.value)
-                                }
+                                onChange={(event) => setPassword(event.target.value)}
                             />
                         </label>
                         <button type="submit" className="btn btn-primary">
@@ -81,12 +61,12 @@ export default function Login() {
                                         d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
                                     />
                                 </svg>
-                                <span>¡Ups! hubo un error con las credenciales, volvé a intentarlo</span>
+                                <span>¡Ups! Hubo un error con las credenciales, vuelve a intentarlo</span>
                             </div>
                         )}
                     </form>
                 </div>
             </main>
-        </IndexLayout>
+        </IndexLayoutNoAuth>
     );
 }
