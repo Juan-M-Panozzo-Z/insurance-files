@@ -1,4 +1,4 @@
-import IndexLayout from "../layouts/indexLayout";
+import IndexLayout from "../layouts/IndexLayout";
 import CardLoading from "../components/CardLoading";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";

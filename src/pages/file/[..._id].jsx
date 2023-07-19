@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import axios from "axios";
-import IndexLayout from "../layouts/indexLayout";
+import IndexLayout from "../layouts/IndexLayout";
 import CardFiles from "../components/CardFiles";
 
 export default function SearchFile() {
