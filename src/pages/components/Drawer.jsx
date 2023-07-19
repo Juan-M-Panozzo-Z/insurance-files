@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
-import { useSession, signOut } from "next-auth/react";
+import {signOut } from "next-auth/react";
 
 const links = [
     {
@@ -14,8 +14,6 @@ const links = [
     },
 ];
 function Drawer({ children }) {
-    const { data: session, status } = useSession({ required: true });
-    console.log(session);
     const router = useRouter();
 
     const isLoginPage = router.pathname === "/login";
