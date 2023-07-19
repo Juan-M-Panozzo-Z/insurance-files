@@ -15,10 +15,12 @@ const links = [
 ];
 
 function Drawer({ children }) {
-    const session = useSession({ required: true });
+    // const { data: session, status } = useSession({ required: true }); // Desestructura data y status
     const router = useRouter();
 
     const isLoginPage = router.pathname === "/login";
+
+    // status === "loading" && <div>Cargando...</div>;
 
     return (
         <div className="drawer h-screen">
@@ -67,14 +69,14 @@ function Drawer({ children }) {
                                     </li>
                                 ))}
                         </ul>
-                        {session && (
+                        {/* {session && (
                             <button
                                 onClick={() => signOut()}
                                 className="btn btn-sm btn-primary"
                             >
                                 Cerrar sesión
                             </button>
-                        )}
+                        )} */}
                     </div>
                 </div>
                 {children}
@@ -90,14 +92,14 @@ function Drawer({ children }) {
                                 </Link>
                             </li>
                         ))}
-                    {session && (
+                    {/* {session && (
                         <button
                             onClick={() => signOut()}
                             className="btn btn-sm btn-primary"
                         >
                             Cerrar sesión
                         </button>
-                    )}
+                    )} */}
                 </ul>
             </div>
         </div>
