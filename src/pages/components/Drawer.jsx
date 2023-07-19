@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
+import { useSession, signOut } from "next-auth/react";
 
 const links = [
     {
@@ -13,6 +14,8 @@ const links = [
     },
 ];
 function Drawer({ children }) {
+    const { data: session, status } = useSession({ required: true });
+    console.log(session);
     const router = useRouter();
 
     const isLoginPage = router.pathname === "/login";
@@ -64,6 +67,14 @@ function Drawer({ children }) {
                                     </li>
                                 ))}
                         </ul>
+                        {session && (
+                            <button
+                                onClick={() => signOut()}
+                                className="btn btn-sm btn-primary"
+                            >
+                                Cerrar sesión
+                            </button>
+                        )}
                     </div>
                 </div>
                 {children}
@@ -79,6 +90,14 @@ function Drawer({ children }) {
                                 </Link>
                             </li>
                         ))}
+                    {session && (
+                        <button
+                            onClick={() => signOut()}
+                            className="btn btn-sm btn-primary mt-4"
+                        >
+                            Cerrar sesión
+                        </button>
+                    )}
                 </ul>
             </div>
         </div>

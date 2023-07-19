@@ -1,6 +1,6 @@
 import FileForm from "./components/FileForm";
 import Section from "./components/Section";
-import IndexLayout from "./layouts/indexLayout";
+import IndexLayout from "./layouts/IndexLayout";
 
 export default function New() {
     return (

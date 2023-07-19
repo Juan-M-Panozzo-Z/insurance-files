@@ -1,13 +1,13 @@
-import IndexLayout from "./layouts/indexLayout";
+import IndexLayout from "./layouts/IndexLayout";
 import { useState } from "react";
+import {useRouter} from "next/router";
 
-
-export default function Home({ user }) {
+export default function Home() {
+    const router = useRouter();
     const [search, setSearch] = useState("");
-
     const handleSearch = (e) => {
-        e.preventDefault();
-        search && window.location.replace(`/search/${search}`);
+        console.log(e)
+        search && router.push(`/search/${search}`);
     };
 
     return (
