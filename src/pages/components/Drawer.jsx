@@ -15,7 +15,7 @@ const links = [
 ];
 
 function Drawer({ children }) {
-    const { data: session } = useSession({ required: true });
+    const session = useSession({ required: true });
     const router = useRouter();
 
     const isLoginPage = router.pathname === "/login";
