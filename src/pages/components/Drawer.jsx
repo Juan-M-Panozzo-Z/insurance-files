@@ -13,9 +13,9 @@ const links = [
         label: "Nuevo fichero",
     },
 ];
+
 function Drawer({ children }) {
     const { data: session } = useSession({ required: true });
-    console.log(session);
     const router = useRouter();
 
     const isLoginPage = router.pathname === "/login";
@@ -93,7 +93,7 @@ function Drawer({ children }) {
                     {session && (
                         <button
                             onClick={() => signOut()}
-                            className="btn btn-sm btn-primary mt-4"
+                            className="btn btn-sm btn-primary"
                         >
                             Cerrar sesión
                         </button>
