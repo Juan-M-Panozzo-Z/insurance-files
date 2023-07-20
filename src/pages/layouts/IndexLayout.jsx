@@ -58,7 +58,7 @@ export default function IndexLayout({ children, ...pageProps }) {
                                         type="email"
                                         name="email"
                                         className="input input-bordered rounded-full"
-                                        placeholder="Email"
+                                        placeholder="ejemplo@mail.com"
                                         value={email}
                                         onChange={(event) =>
                                             setEmail(event.target.value)
@@ -73,7 +73,7 @@ export default function IndexLayout({ children, ...pageProps }) {
                                         type="password"
                                         name="password"
                                         className="input input-bordered rounded-full"
-                                        placeholder="Contraseña"
+                                        placeholder="********"
                                         value={password}
                                         onChange={(event) =>
                                             setPassword(event.target.value)
