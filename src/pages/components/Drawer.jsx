@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
-import { useSession, signOut } from "next-auth/react";
+import { signOut } from "next-auth/react";
 
 const links = [
     {
@@ -15,13 +15,9 @@ const links = [
 ];
 
 function Drawer({ children }) {
-    // const { data: session, status } = useSession({ required: true }); // Desestructura data y status
     const router = useRouter();
 
     const isLoginPage = router.pathname === "/login";
-
-    // status === "loading" && <div>Cargando...</div>;
-
     return (
         <div className="drawer h-screen">
             <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -69,14 +65,13 @@ function Drawer({ children }) {
                                     </li>
                                 ))}
                         </ul>
-                        {/* {session && (
-                            <button
-                                onClick={() => signOut()}
-                                className="btn btn-sm btn-primary"
-                            >
-                                Cerrar sesión
-                            </button>
-                        )} */}
+
+                        <button
+                            onClick={() => signOut()}
+                            className="btn btn-sm btn-primary"
+                        >
+                            Cerrar sesión
+                        </button>
                     </div>
                 </div>
                 {children}
