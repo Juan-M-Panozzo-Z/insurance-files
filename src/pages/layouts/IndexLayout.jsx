@@ -26,7 +26,7 @@ export default function IndexLayout({ children, ...pageProps }) {
                 router.push("/");
                 return null;
             }
-            // setIsLoading(false);
+            setIsLoading(false);
             setError("Email o contraseña incorrectos");
             setEmail("");
             setPassword("");
@@ -44,9 +44,14 @@ export default function IndexLayout({ children, ...pageProps }) {
                 </Head>
                 <section className="grid place-items-center h-screen">
                     <div className="flex flex-col gap-4 md:shadow-xl rounded-box md:w-2/3 h-auto p-12">
-                        <h1 className="text-4xl font-bold text-center">
-                            Iniciar sesión
-                        </h1>
+                        <div className="flex flex-col gap-4 text-center">
+                            <h1 className="text-2xl md:text-4xl">
+                                Bienvenid@ a Fichero Digital
+                            </h1>
+                            <p className="text-sm md:text-lg">
+                                Inicia sesión para acceder a los archivos
+                            </p>
+                        </div>
                         <form
                             onSubmit={handleSubmit}
                             className="flex flex-col gap-4"
