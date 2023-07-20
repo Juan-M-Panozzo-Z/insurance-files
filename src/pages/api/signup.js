@@ -8,17 +8,18 @@ export default async function handler(req, res) {
         res.status(200).json({ success: true, data: users });
     }
     if (req.method === "POST") {
-        const { name = "Usuario", email, password } = req.body;
+        const { email, password } = req.body;
 
         const user = await User.create({ name, email, password });
         res.status(201).json({ success: true, data: user });
     }
     if (req.method === "PUT") {
-        const { name, email, password } = req.body;
+        const { alias, name, email, password } = req.body;
         const user = await User.findOne({ email });
         if (!user) {
             res.status(404).json({ success: false, message: "User not found" });
         }
+        if (alias) user.alias = alias;
         if (name) user.name = name;
         if (password) user.password = password;
         await user.save();
