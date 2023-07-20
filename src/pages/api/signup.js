@@ -3,19 +3,24 @@ import User from "../../models/User";
 
 export default async function handler(req, res) {
     dbConnect();
+    if (req.method === "GET") {
+        const users = await User.find({}).select("-password");
+        res.status(200).json({ success: true, data: users });
+    }
     if (req.method === "POST") {
-        const { email, password } = req.body;
+        const { name = "Usuario", email, password } = req.body;
 
-        const user = await User.create({ email, password });
+        const user = await User.create({ name, email, password });
         res.status(201).json({ success: true, data: user });
     }
     if (req.method === "PUT") {
-        const { email, password } = req.body;
+        const { name, email, password } = req.body;
         const user = await User.findOne({ email });
         if (!user) {
             res.status(404).json({ success: false, message: "User not found" });
         }
-        user.password = password;
+        if (name) user.name = name;
+        if (password) user.password = password;
         await user.save();
         res.status(200).json({ success: true, data: user });
     }
