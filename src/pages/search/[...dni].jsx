@@ -29,10 +29,14 @@ export default function SearchFile() {
                     Resultados de la busqueda
                 </h1>
                 <div className="divider w-1/2 mx-auto"></div>
-                <div className="grid md:grid-cols-3 place-items-center px-4 gap-4">
-                    {isLoading
-                    ? <CardLoading title="Cargando resultados" />
-                     : files?.length > 0 ? (
+                {
+                    isLoading ? (
+                        <div className="grid place-items-center h-full">
+                        <CardLoading title="Cargando resultados" />
+                        </div>
+                    ) : (
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 place-items-center px-4 gap-4">
+                    {files?.length > 0 ? (
                         files.map((file) => (
                             <div
                                 key={file}
@@ -70,6 +74,8 @@ export default function SearchFile() {
                         </div>
                     )}
                 </div>
+                    )
+                }
             </div>
         </IndexLayout>
     );

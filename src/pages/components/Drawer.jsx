@@ -44,7 +44,7 @@ function Drawer({ children }) {
                             </svg>
                         </label>
                     </div>
-                    <div className=" px-2 mx-2">
+                    <div className="md:flex-1 px-2 mx-2">
                         <Link href={"/"} className="btn btn-ghost font-normal">
                             <Image
                                 width={40}
