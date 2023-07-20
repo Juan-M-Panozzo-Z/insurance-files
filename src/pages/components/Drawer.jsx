@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 import { signOut } from "next-auth/react";
+import { useState } from "react";
 
 const links = [
     {
@@ -15,6 +16,7 @@ const links = [
 ];
 
 function Drawer({ children }) {
+    const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
 
     const isLoginPage = router.pathname === "/login";
@@ -65,14 +67,20 @@ function Drawer({ children }) {
                                     </li>
                                 ))}
                         </ul>
-
-                        <button
-                            onClick={() => signOut()}
-                            className="btn btn-sm btn-primary"
-                        >
-                            Cerrar sesión
-                        </button>
                     </div>
+                    <button
+                        onClick={() => {
+                            setIsLoading(true);
+                            signOut();
+                        }}
+                        className="btn btn-sm btn-primary"
+                    >
+                        {isLoading ? (
+                            <div className="loading loading-spinner loading-sm"></div>
+                        ) : (
+                            "Cerrar sesión"
+                        )}
+                    </button>
                 </div>
                 {children}
             </div>

@@ -1,5 +1,4 @@
 import NextAuth from "next-auth/next";
-import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import User from "../../../models/User";
 import bcrypt from "bcryptjs";
@@ -11,7 +10,7 @@ export default NextAuth({
     },
     providers: [
         CredentialsProvider({
-            async authorize(credentials, req) {
+            async authorize(credentials) {
                 await dbConnect();
 
                 const { email, password } = credentials;
