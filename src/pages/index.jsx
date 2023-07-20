@@ -14,11 +14,15 @@ export default function Home() {
 
     return (
         <IndexLayout title="Home">
-            <div className="">
-                <h1 className="p-4 text-center text-2xl font-semibold">
-                    {`Bienvenid@ ${session.user?.name || ' '} al Fichero Digital`}
-                </h1>
-            </div>
+            {session && (
+                <div className="">
+                    <h1 className="p-4 text-center text-2xl font-semibold">
+                        {`Bienvenid@ ${
+                            session.user?.name || " "
+                        } al Fichero Digital`}
+                    </h1>
+                </div>
+            )}
             <div className="hero md:h-full md:w-1/2 mx-auto">
                 <div className="text-center flex flex-col space-y-8 w-full p-4">
                     <input
