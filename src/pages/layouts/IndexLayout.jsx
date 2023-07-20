@@ -41,9 +41,8 @@ export default function IndexLayout({ children, ...pageProps }) {
                 <Head>
                     <title>{`${pageProps.title} | ART & Seguros Sanatorio Concordia`}</title>
                 </Head>
-                <section className="container px-8 mx-auto">
-                    <div className="grid place-items-center h-screen">
-                        <div className="flex flex-col gap-4 border-base-200 border-2 shadow-md rounded-box md:w-1/2 h-auto p-8">
+                    <section className="grid place-items-center h-screen">
+                        <div className="flex flex-col gap-4 border-base-200 md:border-2 md:shadow-md rounded-box md:w-1/2 h-auto p-8">
                             <h1 className="text-4xl font-bold text-center">
                                 Iniciar sesión
                             </h1>
@@ -111,8 +110,7 @@ export default function IndexLayout({ children, ...pageProps }) {
                                 </div>
                             )}
                         </div>
-                    </div>
-                </section>
+                    </section>
             </main>
         );
     }
