@@ -16,7 +16,7 @@ export default function Home() {
         <IndexLayout title="Home">
             <div className="">
                 <h1 className="p-4 text-center text-2xl font-semibold">
-                    {`Bienvenid@ ${session.user?.name} al Fichero Digital`}
+                    {`Bienvenid@ ${session.user?.name || ' '} al Fichero Digital`}
                 </h1>
             </div>
             <div className="hero md:h-full md:w-1/2 mx-auto">
